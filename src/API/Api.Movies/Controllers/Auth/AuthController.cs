@@ -50,6 +50,7 @@ namespace Api.Movies.Controllers.Auth
             
             var user = await _userManager.FindByNameAsync(model.Username);
             var bAutenticado = false;
+
             if (user != null)
             {
                 bAutenticado = await _userManager.CheckPasswordAsync(user, model.Password);
@@ -59,6 +60,7 @@ namespace Api.Movies.Controllers.Auth
                     response = Ok(new { token = tokenString });
                 }
             }
+
             return response;
         }
 
