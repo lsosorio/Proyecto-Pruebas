@@ -59,7 +59,7 @@ namespace Api.Movies
                 opts.Password.RequireUppercase = true;
                 opts.Password.RequireLowercase = true;
                 opts.User.RequireUniqueEmail = true;
-                opts.Lockout.MaxFailedAccessAttempts = 6; /// Despues de 6 intento se bloquea el usuario
+                //opts.Lockout.MaxFailedAccessAttempts = 6; /// Despues de 6 intento se bloquea el usuario
                 opts.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
             })
                  .AddEntityFrameworkStores<ApplicationDbContext>()

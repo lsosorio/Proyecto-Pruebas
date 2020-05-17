@@ -15,83 +15,91 @@ namespace UoW
     public class UnitOfWork : IUnitOfWork
     {
 
-        private readonly ApplicationDbContext _dbContext;
+        private ApplicationDbContext _dbContext;
+        public virtual IGenericRepository<Categoria> _categoriaRepo { get; set; }
+        public virtual IGenericRepository<Entretenimiento> _entretenimientoRepo { get; set; }
+        public virtual IGenericRepository<EntretenimientosCategorias> _entretenimientoCatRepo { get; set; }
+        public virtual IGenericRepository<ApplicationUser> _applicationUserRepo { get; set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _dbContext = context;
+            _categoriaRepo = new GenericRepository<Categoria>(context);
+            _entretenimientoRepo = new GenericRepository<Entretenimiento>(context);
+            _entretenimientoCatRepo = new GenericRepository<EntretenimientosCategorias>(context);
+            _applicationUserRepo = new GenericRepository<ApplicationUser>(context);
         }
 
 
 
-
+        /*
         private IGenericRepository<Categoria> _categoriaReport;
         private IGenericRepository<Entretenimiento> _entretenimientoRepository;
         private IGenericRepository<EntretenimientosCategorias> _entretenimientosCategoriasRepository;
         private IGenericRepository<ApplicationUser> _applicationUserRepository;
 
 
-        public IGenericRepository<Categoria> _categoriaRepo => _categoriaReport ?? (_categoriaReport = new GenericRepository<Categoria>(_dbContext));
-        public IGenericRepository<Entretenimiento> _entretenimientoRepo => _entretenimientoRepository ?? (_entretenimientoRepository = new GenericRepository<Entretenimiento>(_dbContext));
-        public IGenericRepository<EntretenimientosCategorias> _entretenimientoCatRepo => _entretenimientosCategoriasRepository ?? (_entretenimientosCategoriasRepository = new GenericRepository<EntretenimientosCategorias>(_dbContext));
+        public virtual IGenericRepository<Categoria> _categoriaRepo => _categoriaReport ?? (_categoriaReport = );
+        public virtual IGenericRepository<Entretenimiento> _entretenimientoRepo => _entretenimientoRepository ?? (_entretenimientoRepository = new GenericRepository<Entretenimiento>(_dbContext));
+        public virtual IGenericRepository<EntretenimientosCategorias> _entretenimientoCatRepo => _entretenimientosCategoriasRepository ?? (_entretenimientosCategoriasRepository = new GenericRepository<EntretenimientosCategorias>(_dbContext));
 
-        public IGenericRepository<ApplicationUser> _applicationUserRepo => _applicationUserRepo ?? (_applicationUserRepository = new GenericRepository<ApplicationUser>(_dbContext));
+        public virtual IGenericRepository<ApplicationUser> _applicationUserRepo => _applicationUserRepo ?? (_applicationUserRepository = new GenericRepository<ApplicationUser>(_dbContext));
 
-
+    */
 
         #region Implementación de funciones de la interfaz
 
-        public async Task<int> SaveAsync()
+        public virtual async Task<int> SaveAsync()
         {
             return await _dbContext.SaveChangesAsync();
         }
-        public async Task BeginTransactionAsync(IsolationLevel isolationLevel)
+        public virtual async Task BeginTransactionAsync(IsolationLevel isolationLevel)
         {
             await _dbContext.Database.BeginTransactionAsync(isolationLevel);
         }
 
-        public async Task BeginTransactionAsync()
+        public virtual async Task BeginTransactionAsync()
         {
             await _dbContext.Database.BeginTransactionAsync();
         }
 
 
 
-        public void Save()
+        public virtual void Save()
         {
             _dbContext.SaveChanges();
         }
 
-        public void BulkSaveChanges()
+        public virtual void BulkSaveChanges()
         {
             _dbContext.BulkSaveChanges();
         }
 
-        public void BeginTransaction(IsolationLevel isolationLevel)
+        public virtual void BeginTransaction(IsolationLevel isolationLevel)
         {
             _dbContext.Database.BeginTransaction(isolationLevel);
         }
 
-        public void BeginTransaction()
+        public virtual void BeginTransaction()
         {
             _dbContext.Database.BeginTransaction();
         }
 
-        public void Commit()
+        public virtual void Commit()
         {
             try
             {
                 _dbContext.Database.CommitTransaction();
             }
-            catch(Exception e)
+            catch
             {
                 _dbContext.Database.RollbackTransaction();
             }
             
         }
 
-        public void RollbackTransaction()
+        public virtual void RollbackTransaction()
         {
             if (_dbContext.Database == null) return;
 
@@ -99,19 +107,19 @@ namespace UoW
 
         }
 
-        public int ExecuteSqlCommand(string query, params object[] parameters)
+        public virtual int ExecuteSqlCommand(string query, params object[] parameters)
         {
             return _dbContext.Database.ExecuteSqlRaw(query, parameters);
         }
 
-        public async Task<int> ExecuteSqlCommandAsync(string query, params object[] parameters)
+        public virtual async Task<int> ExecuteSqlCommandAsync(string query, params object[] parameters)
         {
 
             return await _dbContext.Database.ExecuteSqlRawAsync(query, parameters);
 
         }
 
-        public List<T> RawSqlQuery<T>(string query, Func<DbDataReader, T> map)
+        public virtual List<T> RawSqlQuery<T>(string query, Func<DbDataReader, T> map)
         {
             using (var command = _dbContext.Database.GetDbConnection().CreateCommand())
             {
@@ -135,7 +143,7 @@ namespace UoW
 
         }
 
-        public async Task<List<T>> RawSqlQueryAsync<T>(string query, Func<DbDataReader, T> map)
+        public virtual async Task<List<T>> RawSqlQueryAsync<T>(string query, Func<DbDataReader, T> map)
         {
             using (var command = _dbContext.Database.GetDbConnection().CreateCommand())
             {
@@ -173,7 +181,7 @@ namespace UoW
             this.disposed = true;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Dispose(true);
             System.GC.SuppressFinalize(this);

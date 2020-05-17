@@ -1,0 +1,8 @@
+Ÿ
+˜C:\Users\LuisOsorio\Desktop\Universidad\Semestre II\Pruebas\Proyecto Arquitectura\postgress\src\BusinessLogic\LogicServices\Services\CategoriaService.csL 	8j !"&'()*./0126789:rÖ	
+#+3;>?@ABCEFGHIJKLMQRSUVWY[\]^_`acdghiklmnoqsuvwxyz|}€ƒ„†‡ˆ‰Š‹ŒŽ‘’“”–˜™š›œžŸ ¡¢¦§¨ª«­®¯²³´µ¶·¸º»¾¿ÀÂÃÄÅÇÈÊÌÍÎÏÐÑÒÔÖ×ØÙÚÛÜÞàáâäåæçèéêëìíîïðñóô÷øùûüýÿƒ…‡ˆ‰Š‹Œ’“”–—˜šœž ¢¤¥¦§¨©ª¬­®¯x‚„JKLWY[_`cmoqsuy|ƒ„†ˆŠŽ“šœ ­¯²¶·ºÇÈÊÌÍÏÐÔÖØÙÚÞàáâäæçëïðóýÿƒ…‡‹Œ˜šœž ¢¤¨©¬ø	
+žC:\Users\LuisOsorio\Desktop\Universidad\Semestre II\Pruebas\Proyecto Arquitectura\postgress\src\BusinessLogic\LogicServices\Services\EntretenimientoService.csh 
+8j"!"#$%)*+,-.23456:;<=>BCDEF Ür¯	
+&/7?GIJKLMNPQRSTUVWXZ[]^`abcdefghijklmnpstuwxyz{}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ’”–—˜™š›ž ¡¢¤¥¦§¨©«¬­®¯°²³´¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÎÐÒÓÔÕÖ×ÙÚÝÞßáâãäåçèéêëìíîïðñòóôõö÷øùúüþ€‚ƒ„…‡ˆ‹ŒŽ‘’“”•˜™šœžŸ ¢£¤¥¦§©ª«­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÂÄÆÇÈÉÊËÍÎÑÒÓÕÖ×ØÚÛÝßàáâãäåæçèéêëìíîïðñòóõ÷øùúûýþ€ƒ„…†ˆŠ‹ŒŽ‘’“”•–—˜™š›ž¡¢£¥¦¨ª¬­¯±²³´µ¶·¹º¼¾ÀÁÂÃÄÅÆÈÉÌÍÎÐÑÓÕ×ØÚÝÞàáãåæçèéêëíîðòôõö÷øùúüýÿ€x‚óUVW]^`bdhmy}‚ƒ„…†‡ˆ‰Š‹Œ’”™š¦§«­¯°²³¶¸¹»¼½¾¿ÀÁÂÃÄÅÇÈÊÌÎÐÕÖÙãåçéëìíîïðñòóôõ÷øüþƒ„‡“ž¢¤¦§©ª­®°±²³´µ¶·¸¹º¼½¿ÂÄÉÊÍÚÛÝßàâãäåæçèéêëìîïñõ÷ùúûýþ€ƒ„ˆŠ‹ŒŽ‘•™š¨ª¬¯±³µ¶¹¼¾ÀÄÅÈÓÕ×ØÚÝÞàãåçéêíðòôøùüò
+”C:\Users\LuisOsorio\Desktop\Universidad\Semestre II\Pruebas\Proyecto Arquitectura\postgress\src\BusinessLogic\LogicServices\Services\UsersService.cs 8r?	
+ !"#$%&'()*-./12346789:;<=>?@ABCDEFGx‚%&'()3468<ABD

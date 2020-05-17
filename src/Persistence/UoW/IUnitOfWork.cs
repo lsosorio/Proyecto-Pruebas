@@ -13,10 +13,10 @@ namespace UoW
     public interface IUnitOfWork : IDisposable
     {
 
-        IGenericRepository<Categoria> _categoriaRepo { get; }
-        IGenericRepository<Entretenimiento> _entretenimientoRepo { get; }
-        IGenericRepository<EntretenimientosCategorias> _entretenimientoCatRepo { get; }
-        IGenericRepository<ApplicationUser> _applicationUserRepo { get; }
+        IGenericRepository<Categoria> _categoriaRepo { get; set; }
+        IGenericRepository<Entretenimiento> _entretenimientoRepo { get; set; }
+        IGenericRepository<EntretenimientosCategorias> _entretenimientoCatRepo { get; set; }
+        IGenericRepository<ApplicationUser> _applicationUserRepo { get; set; }
 
         #region Funciones para el unit of work
 

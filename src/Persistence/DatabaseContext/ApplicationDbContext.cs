@@ -24,9 +24,9 @@ namespace DatabaseContext
         {
         }
 
-        public DbSet<Categoria> Categoria { get; set; }
-        public DbSet<Entretenimiento> Entretenimiento { get; set; }
-        public DbSet<EntretenimientosCategorias> EntretenimientosCategorias { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Entretenimiento> Entretenimiento { get; set; }
+        public virtual DbSet<EntretenimientosCategorias> EntretenimientosCategorias { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

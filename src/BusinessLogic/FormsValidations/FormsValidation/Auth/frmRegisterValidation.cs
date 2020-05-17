@@ -24,18 +24,12 @@ namespace FormsValidations.FormsValidation.Auth
             RuleFor(model => model.FullName)
                 .NotEmpty()
                 .NotNull()
-                .MaximumLength(100);
+                .MaximumLength(50);
 
             RuleFor(model => model.Email)
                 .NotEmpty()
                 .NotNull()
                 .MaximumLength(100);
-
-            RuleFor(model => model.Email)
-                .NotEmpty()
-                .NotNull()
-                .MinimumLength(8)
-                .MaximumLength(20);
 
 
             /*

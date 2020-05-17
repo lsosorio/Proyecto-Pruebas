@@ -25,10 +25,10 @@ namespace Api.Movies.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTodos()
+        public IActionResult GetTodos()
         {
 
-            return Ok(await _categoriaService.TodasAsync());
+            return Ok(_categoriaService.Todas());
         }
 
         [HttpPost("Todas")]
@@ -42,10 +42,10 @@ namespace Api.Movies.Controllers.v1
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetPorId(Guid Id)
+        public IActionResult GetPorId(Guid Id)
         {
 
-            return Ok(await _categoriaService.GeneroPorId(Id));
+            return Ok(_categoriaService.CategoriaPorId(Id));
         }
 
 

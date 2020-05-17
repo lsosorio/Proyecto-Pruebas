@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UoW;
+using Newtonsoft.Json;
 
 namespace LogicServices.Services
 {
@@ -21,10 +22,10 @@ namespace LogicServices.Services
         /// Esta función retorna todas las categorias existentes en la aplicación
         /// </summary>
         /// <returns></returns>
-        Task<ResponseHelper<IEnumerable<CategoriaGridView>>> TodasAsync();
+        ResponseHelper<IEnumerable<CategoriaGridView>> Todas();
 
 
-        Task<ResponseHelper<CategoriaGridView>> GeneroPorId(Guid Id);
+        ResponseHelper<CategoriaGridView> CategoriaPorId(Guid Id);
 
 
         /// <summary>
@@ -77,13 +78,13 @@ namespace LogicServices.Services
 
 
 
-        public async Task<ResponseHelper<IEnumerable<CategoriaGridView>>> TodasAsync()
+        public ResponseHelper<IEnumerable<CategoriaGridView>> Todas()
         {
             var rh = new ResponseHelper<IEnumerable<CategoriaGridView>>();
 
             try
             {
-                var lstCategorias = await _unitOfWork._categoriaRepo.GetAllAsyn();
+                var lstCategorias = _unitOfWork._categoriaRepo.GetAll();
 
                 rh.Result = _mapper.Map<IEnumerable<CategoriaGridView>>(lstCategorias);
 
@@ -92,21 +93,22 @@ namespace LogicServices.Services
             catch (Exception e)
             {
                 _logger.LogError(e.Message, e);
+                rh.Message = e.Message;
             }
 
             return rh;
         }
 
 
-        public async Task<ResponseHelper<CategoriaGridView>> GeneroPorId(Guid Id)
+        public ResponseHelper<CategoriaGridView> CategoriaPorId(Guid Id)
         {
             var rh = new ResponseHelper<CategoriaGridView>();
 
             try
             {
-                var dbCategoria = await _unitOfWork
+                var dbCategoria = _unitOfWork
                     ._categoriaRepo
-                    .FindAsync(x=>x.Id == Id);
+                    .Find(x=>x.Id == Id);
 
                 var result = _mapper.Map<CategoriaGridView>(dbCategoria);
 

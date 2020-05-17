@@ -31,7 +31,7 @@ namespace Repository
 
 
 
-        public IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return _context.Set<T>();
         }
@@ -95,14 +95,14 @@ namespace Repository
             return await query.FirstOrDefaultAsync(match);
         }
 
-        public ICollection<T> FindAll(Expression<Func<T, bool>> match, params Expression<Func<T, object>>[] includeProperties)
+        public virtual ICollection<T> FindAll(Expression<Func<T, bool>> match, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>().Where(match);
             query = PerformInclusions(includeProperties, query);
             return query.ToList();
         }
 
-        public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match, params Expression<Func<T, object>>[] includeProperties)
+        public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>().Where(match);
             query = PerformInclusions(includeProperties, query);
@@ -132,7 +132,7 @@ namespace Repository
             return exist;
         }
 
-        public async Task<T> UpdateAsync(T t, object key)
+        public virtual async Task<T> UpdateAsync(T t, object key)
         {
             if (t == null)
                 return null;
@@ -156,12 +156,12 @@ namespace Repository
             return exist;
         }
 
-        public int Count()
+        public virtual int Count()
         {
             return _context.Set<T>().Count();
         }
 
-        public async Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
             return await _context.Set<T>().CountAsync();
         }
@@ -178,7 +178,7 @@ namespace Repository
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        public virtual IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
         {
 
             IQueryable<T> queryable = GetAll();
@@ -244,7 +244,7 @@ namespace Repository
         #endregion
 
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);

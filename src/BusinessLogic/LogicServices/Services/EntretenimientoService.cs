@@ -9,11 +9,13 @@ using Models.DbModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UoW;
+using Common.Forms.Entretenimiento;
 
 namespace LogicServices.Services
 {
@@ -24,6 +26,9 @@ namespace LogicServices.Services
         /// </summary>
         /// <returns></returns>
         ResponseHelper<IEnumerable<EntretenimientoGridView>> Todas();
+
+
+        ResponseHelper<IEnumerable<EntretenimientoGridView>> InfiniteScroll(frmEntretenimientoScroll model);
 
         /// <summary>
         /// Función que busca un entretenimiento por Id
@@ -137,6 +142,66 @@ namespace LogicServices.Services
                         }),
                         ImagenUrl = x.ImagenUrl
                     });
+
+                rh.Result = lstSalida;
+
+                rh.SetResponse(true, m: "Ok", ErrorCode: 200);
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message, e);
+                rh.Message = e.Message;
+            }
+
+            return rh;
+        }
+
+        public ResponseHelper<IEnumerable<EntretenimientoGridView>> InfiniteScroll(frmEntretenimientoScroll model)
+        {
+            var rh = new ResponseHelper<IEnumerable<EntretenimientoGridView>>();
+
+            try
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(model));
+                var lstEntrenimientos = (_unitOfWork
+                    ._entretenimientoRepo
+                    .GetAll());
+
+                if(model.categoria != null)
+                {
+                    var lstEntrePorCategoria = _unitOfWork
+                        ._entretenimientoCatRepo
+                        .FindAll(x => x.CategoriaId == model.categoria)
+                        .Select(x => x.EntretenimientoId);
+
+                    lstEntrenimientos = lstEntrenimientos
+                        .Where(x => lstEntrePorCategoria.Contains(x.Id));
+                }
+
+                var lstSalida = lstEntrenimientos
+                    .AsQueryable()
+                    .OrderBy(x=>x.CreatedAt)
+                    .Select(x => new EntretenimientoGridView
+                    {
+                        Id = x.Id,
+                        Ano = x.Ano,
+                        Titulo = x.Titulo,
+                        Direccion = x.Direccion,
+                        Fotografia = x.Fotografia,
+                        Musica = x.Musica,
+                        Pais = x.Pais,
+                        Productora = x.Productora,
+                        Reparto = x.Reparto,
+                        Snopsis = x.Snopsis,
+                        Categorias = x.Categorias.Select(y => new CategoriaGridView()
+                        {
+                            Id = y.CategoriaId,
+                            Nombre = y.Categoria.Nombre
+                        }),
+                        ImagenUrl = x.ImagenUrl
+                    })
+                    .Skip(10* model.numeroPagina).Take(10);
 
                 rh.Result = lstSalida;
 
